@@ -1,0 +1,428 @@
+From 727e39ff4a0e994df223038b7dbb25c2d45ae560 Mon Sep 17 00:00:00 2001
+From: PolarX <polarx@sih2026.dev>
+Date: Fri, 4 Sep 2026 12:31:59 +0000
+Subject: [PATCH] chore: scaffold PolarX project structure (blank files)
+
+---
+ .env.example                                  |  0
+ .gitignore                                    |  0
+ README.md                                     | 44 +++++++++++++++++++
+ client/index.html                             |  0
+ client/package.json                           |  0
+ client/postcss.config.js                      |  0
+ client/src/App.jsx                            |  0
+ .../src/components/common/LoadingSpinner.jsx  |  0
+ client/src/components/common/Navbar.jsx       |  0
+ client/src/components/common/PolarCard.jsx    |  0
+ client/src/components/common/Sidebar.jsx      |  0
+ client/src/components/common/StatusBadge.jsx  |  0
+ client/src/components/dashboard/CargoMap.jsx  |  0
+ .../components/dashboard/InventoryWidget.jsx  |  0
+ .../components/dashboard/PersonnelWidget.jsx  |  0
+ .../src/components/dashboard/StationCard.jsx  |  0
+ client/src/components/landing/Hero.jsx        |  0
+ .../src/components/landing/ProblemSection.jsx |  0
+ .../src/components/landing/StationGallery.jsx |  0
+ client/src/context/AppContext.jsx             |  0
+ client/src/context/AuthContext.jsx            |  0
+ client/src/context/SocketContext.jsx          |  0
+ client/src/hooks/useAuth.js                   |  0
+ client/src/hooks/useFetch.js                  |  0
+ client/src/hooks/useSocket.js                 |  0
+ client/src/main.jsx                           |  0
+ client/src/pages/CargoMap.jsx                 |  0
+ client/src/pages/Dashboard.jsx                |  0
+ client/src/pages/Emergency.jsx                |  0
+ client/src/pages/Inventory.jsx                |  0
+ client/src/pages/Landing.jsx                  |  0
+ client/src/pages/Personnel.jsx                |  0
+ client/src/pages/Settings.jsx                 |  0
+ client/src/services/api.js                    |  0
+ client/src/services/socket.js                 |  0
+ client/src/styles/globals.css                 |  0
+ client/src/styles/theme.css                   |  0
+ client/src/utils/constants.js                 |  0
+ client/src/utils/helpers.js                   |  0
+ client/tailwind.config.js                     |  0
+ client/vite.config.js                         |  0
+ package.json                                  |  0
+ server/package.json                           |  0
+ server/server.js                              |  0
+ server/src/config/db.js                       |  0
+ server/src/config/env.js                      |  0
+ server/src/controllers/authController.js      |  0
+ server/src/controllers/cargoController.js     |  0
+ server/src/controllers/emergencyController.js |  0
+ server/src/controllers/inventoryController.js |  0
+ server/src/controllers/missionController.js   |  0
+ server/src/controllers/personnelController.js |  0
+ server/src/db/connection.js                   |  0
+ server/src/db/migrate.js                      |  0
+ server/src/db/seed.js                         |  0
+ server/src/middleware/auth.js                 |  0
+ server/src/middleware/errorHandler.js         |  0
+ server/src/middleware/validate.js             |  0
+ server/src/models/Emergency.js                |  0
+ server/src/models/Inventory.js                |  0
+ server/src/models/Mission.js                  |  0
+ server/src/models/Personnel.js                |  0
+ server/src/models/Shipment.js                 |  0
+ server/src/models/User.js                     |  0
+ server/src/routes/auth.js                     |  0
+ server/src/routes/cargo.js                    |  0
+ server/src/routes/emergency.js                |  0
+ server/src/routes/inventory.js                |  0
+ server/src/routes/missions.js                 |  0
+ server/src/routes/personnel.js                |  0
+ server/src/socket/cargoHandlers.js            |  0
+ server/src/socket/emergencyHandlers.js        |  0
+ server/src/socket/index.js                    |  0
+ server/src/socket/personnelHandlers.js        |  0
+ 74 files changed, 44 insertions(+)
+ create mode 100644 .env.example
+ create mode 100644 .gitignore
+ create mode 100644 README.md
+ create mode 100644 client/index.html
+ create mode 100644 client/package.json
+ create mode 100644 client/postcss.config.js
+ create mode 100644 client/src/App.jsx
+ create mode 100644 client/src/components/common/LoadingSpinner.jsx
+ create mode 100644 client/src/components/common/Navbar.jsx
+ create mode 100644 client/src/components/common/PolarCard.jsx
+ create mode 100644 client/src/components/common/Sidebar.jsx
+ create mode 100644 client/src/components/common/StatusBadge.jsx
+ create mode 100644 client/src/components/dashboard/CargoMap.jsx
+ create mode 100644 client/src/components/dashboard/InventoryWidget.jsx
+ create mode 100644 client/src/components/dashboard/PersonnelWidget.jsx
+ create mode 100644 client/src/components/dashboard/StationCard.jsx
+ create mode 100644 client/src/components/landing/Hero.jsx
+ create mode 100644 client/src/components/landing/ProblemSection.jsx
+ create mode 100644 client/src/components/landing/StationGallery.jsx
+ create mode 100644 client/src/context/AppContext.jsx
+ create mode 100644 client/src/context/AuthContext.jsx
+ create mode 100644 client/src/context/SocketContext.jsx
+ create mode 100644 client/src/hooks/useAuth.js
+ create mode 100644 client/src/hooks/useFetch.js
+ create mode 100644 client/src/hooks/useSocket.js
+ create mode 100644 client/src/main.jsx
+ create mode 100644 client/src/pages/CargoMap.jsx
+ create mode 100644 client/src/pages/Dashboard.jsx
+ create mode 100644 client/src/pages/Emergency.jsx
+ create mode 100644 client/src/pages/Inventory.jsx
+ create mode 100644 client/src/pages/Landing.jsx
+ create mode 100644 client/src/pages/Personnel.jsx
+ create mode 100644 client/src/pages/Settings.jsx
+ create mode 100644 client/src/services/api.js
+ create mode 100644 client/src/services/socket.js
+ create mode 100644 client/src/styles/globals.css
+ create mode 100644 client/src/styles/theme.css
+ create mode 100644 client/src/utils/constants.js
+ create mode 100644 client/src/utils/helpers.js
+ create mode 100644 client/tailwind.config.js
+ create mode 100644 client/vite.config.js
+ create mode 100644 package.json
+ create mode 100644 server/package.json
+ create mode 100644 server/server.js
+ create mode 100644 server/src/config/db.js
+ create mode 100644 server/src/config/env.js
+ create mode 100644 server/src/controllers/authController.js
+ create mode 100644 server/src/controllers/cargoController.js
+ create mode 100644 server/src/controllers/emergencyController.js
+ create mode 100644 server/src/controllers/inventoryController.js
+ create mode 100644 server/src/controllers/missionController.js
+ create mode 100644 server/src/controllers/personnelController.js
+ create mode 100644 server/src/db/connection.js
+ create mode 100644 server/src/db/migrate.js
+ create mode 100644 server/src/db/seed.js
+ create mode 100644 server/src/middleware/auth.js
+ create mode 100644 server/src/middleware/errorHandler.js
+ create mode 100644 server/src/middleware/validate.js
+ create mode 100644 server/src/models/Emergency.js
+ create mode 100644 server/src/models/Inventory.js
+ create mode 100644 server/src/models/Mission.js
+ create mode 100644 server/src/models/Personnel.js
+ create mode 100644 server/src/models/Shipment.js
+ create mode 100644 server/src/models/User.js
+ create mode 100644 server/src/routes/auth.js
+ create mode 100644 server/src/routes/cargo.js
+ create mode 100644 server/src/routes/emergency.js
+ create mode 100644 server/src/routes/inventory.js
+ create mode 100644 server/src/routes/missions.js
+ create mode 100644 server/src/routes/personnel.js
+ create mode 100644 server/src/socket/cargoHandlers.js
+ create mode 100644 server/src/socket/emergencyHandlers.js
+ create mode 100644 server/src/socket/index.js
+ create mode 100644 server/src/socket/personnelHandlers.js
+
+diff --git a/.env.example b/.env.example
+new file mode 100644
+index 0000000..e69de29
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..e69de29
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..5179a23
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,44 @@
++# ❄️ PolarX
++
++**Integrated Polar Expedition Logistics & Asset Management System**
++
++Smart India Hackathon 2026 | Problem ID 26062  
++St. Xavier's Catholic College of Engineering, Nagercoil
++
++---
++
++## Stack
++
++| Layer    | Tech                                      |
++|----------|-------------------------------------------|
++| Frontend | React 18, Vite, Tailwind CSS, React Router v6 |
++| Map      | React-Leaflet                             |
++| Charts   | Chart.js + react-chartjs-2                |
++| Realtime | Socket.io                                 |
++| Backend  | Node.js, Express                          |
++| ORM      | Sequelize (SQLite locally → PostgreSQL in prod) |
++| Auth     | JWT + bcryptjs                            |
++
++## Getting Started
++
++```bash
++# From repo root
++npm install        # installs root + client + server deps
++npm run dev        # starts both client (5173) and server (5000)
++```
++
++## Environment
++
++Copy `.env.example` to `.env` and fill in values before running.
++
++## Structure
++
++```
++polarx-app/
++├── client/          # Vite + React frontend
++└── server/          # Express + Sequelize backend
++```
++
++## Switching to PostgreSQL
++
++Change `DB_DIALECT=sqlite` → `DB_DIALECT=postgres` in `.env` and supply `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`. No model changes needed.
+diff --git a/client/index.html b/client/index.html
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/package.json b/client/package.json
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/postcss.config.js b/client/postcss.config.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/App.jsx b/client/src/App.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/common/LoadingSpinner.jsx b/client/src/components/common/LoadingSpinner.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/common/Navbar.jsx b/client/src/components/common/Navbar.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/common/PolarCard.jsx b/client/src/components/common/PolarCard.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/common/Sidebar.jsx b/client/src/components/common/Sidebar.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/common/StatusBadge.jsx b/client/src/components/common/StatusBadge.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/dashboard/CargoMap.jsx b/client/src/components/dashboard/CargoMap.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/dashboard/InventoryWidget.jsx b/client/src/components/dashboard/InventoryWidget.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/dashboard/PersonnelWidget.jsx b/client/src/components/dashboard/PersonnelWidget.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/dashboard/StationCard.jsx b/client/src/components/dashboard/StationCard.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/landing/Hero.jsx b/client/src/components/landing/Hero.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/landing/ProblemSection.jsx b/client/src/components/landing/ProblemSection.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/components/landing/StationGallery.jsx b/client/src/components/landing/StationGallery.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/context/AppContext.jsx b/client/src/context/AppContext.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/context/AuthContext.jsx b/client/src/context/AuthContext.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/context/SocketContext.jsx b/client/src/context/SocketContext.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/hooks/useAuth.js b/client/src/hooks/useAuth.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/hooks/useFetch.js b/client/src/hooks/useFetch.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/hooks/useSocket.js b/client/src/hooks/useSocket.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/main.jsx b/client/src/main.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/pages/CargoMap.jsx b/client/src/pages/CargoMap.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/pages/Dashboard.jsx b/client/src/pages/Dashboard.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/pages/Emergency.jsx b/client/src/pages/Emergency.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/pages/Inventory.jsx b/client/src/pages/Inventory.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/pages/Landing.jsx b/client/src/pages/Landing.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/pages/Personnel.jsx b/client/src/pages/Personnel.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/pages/Settings.jsx b/client/src/pages/Settings.jsx
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/services/api.js b/client/src/services/api.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/services/socket.js b/client/src/services/socket.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/styles/globals.css b/client/src/styles/globals.css
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/styles/theme.css b/client/src/styles/theme.css
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/utils/constants.js b/client/src/utils/constants.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/src/utils/helpers.js b/client/src/utils/helpers.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/tailwind.config.js b/client/tailwind.config.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/client/vite.config.js b/client/vite.config.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/package.json b/package.json
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/package.json b/server/package.json
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/server.js b/server/server.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/config/db.js b/server/src/config/db.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/config/env.js b/server/src/config/env.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/controllers/authController.js b/server/src/controllers/authController.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/controllers/cargoController.js b/server/src/controllers/cargoController.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/controllers/emergencyController.js b/server/src/controllers/emergencyController.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/controllers/inventoryController.js b/server/src/controllers/inventoryController.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/controllers/missionController.js b/server/src/controllers/missionController.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/controllers/personnelController.js b/server/src/controllers/personnelController.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/db/connection.js b/server/src/db/connection.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/db/migrate.js b/server/src/db/migrate.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/db/seed.js b/server/src/db/seed.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/middleware/auth.js b/server/src/middleware/auth.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/middleware/errorHandler.js b/server/src/middleware/errorHandler.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/middleware/validate.js b/server/src/middleware/validate.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/models/Emergency.js b/server/src/models/Emergency.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/models/Inventory.js b/server/src/models/Inventory.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/models/Mission.js b/server/src/models/Mission.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/models/Personnel.js b/server/src/models/Personnel.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/models/Shipment.js b/server/src/models/Shipment.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/models/User.js b/server/src/models/User.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/routes/auth.js b/server/src/routes/auth.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/routes/cargo.js b/server/src/routes/cargo.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/routes/emergency.js b/server/src/routes/emergency.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/routes/inventory.js b/server/src/routes/inventory.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/routes/missions.js b/server/src/routes/missions.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/routes/personnel.js b/server/src/routes/personnel.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/socket/cargoHandlers.js b/server/src/socket/cargoHandlers.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/socket/emergencyHandlers.js b/server/src/socket/emergencyHandlers.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/socket/index.js b/server/src/socket/index.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/server/src/socket/personnelHandlers.js b/server/src/socket/personnelHandlers.js
+new file mode 100644
+index 0000000..e69de29
+-- 
+2.43.0
+
