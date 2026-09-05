@@ -1,0 +1,183 @@
+@import './theme.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Base
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ============================================================
+   Polar Card — the shared glass primitive.
+   Reads its blur/bg/border/shadow from the active theme's
+   CSS variables, so the SAME class looks heavy+dramatic on the
+   landing page and subtle+corporate on the dashboard.
+   ============================================================ */
+.polar-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(var(--card-blur));
+  -webkit-backdrop-filter: blur(var(--card-blur));
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.polar-card:hover {
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Dashboard cards get a tighter radius + no hover lift (info-dense, not playful) */
+.dashboard-theme .polar-card {
+  border-radius: 12px;
+}
+
+/* Landing cards get a bit of lift + the diagonal shine sweep */
+.landing-theme .polar-card {
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-theme .polar-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Reflection / shine sweep, landing only */
+.landing-theme .polar-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.05) 45%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 55%,
+    transparent 70%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+/* ============================================================
+   Aurora glow — used on active sidebar items + landing CTAs
+   ============================================================ */
+.aurora-glow {
+  box-shadow: var(--accent-glow);
+}
+
+.aurora-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(111, 207, 151, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(157, 78, 221, 0.12) 0%, transparent 50%);
+  animation: auroraDrift 15s ease-in-out infinite alternate;
+}
+
+/* ============================================================
+   Frost overlay + particles — landing hero only
+   ============================================================ */
+.frost-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.02) 2px,
+    rgba(255, 255, 255, 0.02) 4px
+  );
+}
+
+.frost-particle {
+  position: absolute;
+  top: -10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  filter: blur(0.5px);
+  animation-name: frostFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Sidebar (dashboard) — solid anchor, no glass
+   ============================================================ */
+.polar-sidebar {
+  background: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+
+.polar-sidebar .nav-link {
+  transition: background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.polar-sidebar .nav-link.active {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: var(--accent-glow);
+}
+
+/* ============================================================
+   Status badges
+   ============================================================ */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background: rgba(111, 207, 151, 0.15);
+  color: var(--aurora-green, #6FCF97);
+}
+
+.status-badge.inactive {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94A3B8;
+}
+
+.status-badge.alert {
+  background: rgba(255, 107, 107, 0.15);
+  color: var(--emergency-red);
+}
+
+/* ============================================================
+   Motion respect
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-container,
+  .frost-particle,
+  .landing-theme .polar-card::after {
+    animation: none !important;
+  }
+}
